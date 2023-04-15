@@ -1,41 +1,70 @@
-﻿void arreglos()
+﻿using System;
+
+class Program
 {
-    string[] nombre = new string[]
+    static void Main(string[] args)
     {
-        "Fernanda","Melvin","Luis","Brandon","Yamileth",
-    };
+        Console.WriteLine("Ingrese Cuantos alumnos hay en total: ");
+        int cantidadAlumnos = int.Parse(Console.ReadLine());
 
-    {
-        int[] notas = new int[] {
-        70,90,43,85,30,
-    };
+        string[] nombres = new string[cantidadAlumnos];
+        int[] notas = new int[cantidadAlumnos];
 
-        int min = notas[0];
-        int max = notas[0];
-        int x = 0;
-        int x1 = 0;
-        for (int i = 0; i < notas.Length; i++)
+        for (int i = 0; i < cantidadAlumnos; i++)
         {
-            if (notas[i] < min)
+            Console.WriteLine("\nEscriba el nombre del alumno {0}: ", i + 1);
+            nombres[i] = Console.ReadLine();
+
+            Console.WriteLine("\nEscriba la nota del alumno {0}: ", i + 1);
+            notas[i] = int.Parse(Console.ReadLine());
+        }
+
+        int notaMaxima = EncontrarMaximo(notas);
+        int notaMinima = EncontrarMinimo(notas);
+
+        Console.WriteLine("\n El alumno con la nota más alta es de {0}:", notaMaxima);
+        for (int i = 0; i < cantidadAlumnos; i++)
+        {
+            if (notas[i] == notaMaxima)
             {
-                min = notas[i];
-                x1 = i;
-            }
-            if (notas[i] > max)
-            {
-                max = notas[i];
-                x = i;
+                Console.WriteLine("- {0}", nombres[i]);
             }
         }
-        Console.WriteLine("El número más pequeño es {0} y es de {1}", min, nombre[x1]);
-        Console.WriteLine("El número más grande es {0} y es de {1}", max, nombre[x]);
+
+        Console.WriteLine("\nEl alumno con la nota más baja es de {0}:", notaMinima);
+        for (int i = 0; i < cantidadAlumnos; i++)
+        {
+            if (notas[i] == notaMinima)
+            {
+                Console.WriteLine("- {0}", nombres[i]);
+            }
+        }
+    }
+
+
+    static int EncontrarMaximo(int[] arreglo)
+    {
+        int maximo = arreglo[0];
+        for (int i = 1; i < arreglo.Length; i++)
+        {
+            if (arreglo[i] > maximo)
+            {
+                maximo = arreglo[i];
+            }
+        }
+        return maximo;
+    }
+
+    static int EncontrarMinimo(int[] arreglo)
+    {
+        int minimo = arreglo[0];
+        for (int i = 1; i < arreglo.Length; i++)
+        {
+            if (arreglo[i] < minimo)
+            {
+                minimo = arreglo[i];
+            }
+        }
+        return minimo;
     }
 }
-
-
-//Console.WriteLine(notas.Max());
-
-
-
-
-arreglos();
